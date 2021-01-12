@@ -111,6 +111,9 @@ fn main() -> Result<()> {
 
     let url: String;
     if let Some(param_url) = opt.url {
+        if opt.platform.is_none() {
+            return Err(anyhow!("platform param should be provided with url"));
+        }
         url = param_url;
     } else {
         url = get_url(remote.url())?;
@@ -130,7 +133,9 @@ fn main() -> Result<()> {
         let file_url = gitlab(&url, &branch_or_commit, file, opt.line).unwrap();
         println!("{}", file_url);
     } else {
-        return Err(anyhow!("unknown url, try passing --url param"));
+        return Err(anyhow!(
+            "unknown url, try passing --url param with --platofrm"
+        ));
     }
 
     Ok(())
