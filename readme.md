@@ -2,14 +2,14 @@
 
 This simple tool allows you to get a file git url
 
-usage :
+## usage :
 
 ```bash
     ❯ git file-url Cargo.toml
     https://github.com/nbouliol/git-file-url/blob/master/Cargo.toml
 ```
 
-install :
+## install :
 
 Make sure [rustup](https://rustup.rs/) is installed
 
@@ -22,3 +22,10 @@ Then
 ```
 
 The binary will be available in the `target/release` directory.
+
+Or if cargo bin path is already added to you env `$PATH`
+
+```bash
+    git clone https://github.com/nbouliol/git-file-url
+    cargo install --path git-file-url
+```

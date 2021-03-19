@@ -94,7 +94,9 @@ fn main() -> Result<()> {
 
     let branch_or_commit: String;
 
-    if head.is_branch() {
+    if let Some(branch) = opt.branch {
+        branch_or_commit = branch;
+    } else if head.is_branch() {
         branch_or_commit = if let Some(name) = repo.head()?.name() {
             name.replace("refs/heads/", "")
         } else {
@@ -149,6 +151,9 @@ struct Opt {
 
     #[structopt(short, long, help = "File line")]
     line: Option<u16>,
+
+    #[structopt(short, long, help = "Branch name or commit sha")]
+    branch: Option<String>,
 
     #[structopt(
         short,
